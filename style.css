@@ -46,8 +46,6 @@ main {
   display: grid;
   grid-template-rows: 12.5rem 1fr;
 
-  anchor-name: --card;
-
 }
 
 .img-wrapper {
@@ -242,11 +240,8 @@ main {
 
   .share-box {
     position: absolute;
-    /* position-anchor: --share-btn; */
-    /* position-area: end center; */
-
-    position-anchor: --card;
-    top: anchor(bottom);
+    position-anchor: --share-btn;
+    position-area: end center;
 
     inline-size: max-content;
     block-size: unset;
