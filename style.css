@@ -1,0 +1,281 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --very-dark-grayish-blue: hsl(217, 19%, 35%);
+  --desaturated-dark-blue: hsl(214, 17%, 51%);
+  --grayish-blue: hsl(212, 23%, 69%);
+  --light-grayish-blue: hsl(210, 46%, 95%);
+
+  --avatar-size: 2.5rem;
+  --card-block-end-padding: 1rem;
+}
+
+body {
+  font-family: "Manrope", serif;
+  font-size: .8125rem;
+  font-weight: 500;
+
+  min-block-size: 100vb;
+
+  background-color: var(--light-grayish-blue);
+
+  align-content: center;
+
+}
+
+main {
+  /* block-size: 100%; */
+  color: var(--very-dark-grayish-blue);
+  
+  padding-block: 5rem;
+
+  container: main / inline-size;
+
+}
+
+.preview-card {
+  inline-size: min(88%, 25rem);
+  margin-inline: auto;
+
+  box-shadow: 10px 20px 109px -49px rgba(0,0,0,0.3);
+
+  display: grid;
+  grid-template-rows: 12.5rem 1fr;
+
+  anchor-name: --card;
+
+}
+
+.img-wrapper {
+  background-image: url(./assets/images/drawers.jpg);
+  background-position: center 25%;
+  background-size: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.text {
+  padding-block-start: 2rem;
+  border-radius: 0 0 10px 10px;
+
+  background-color: #fff;
+
+  display: flex;
+  flex-flow: column;
+  gap: .7rem;
+}
+
+.text > *:not(:last-child) {
+  padding-inline: 2rem;
+}
+
+.text h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.description {
+  opacity: 80%;
+  letter-spacing: .4px;
+  line-height: 1.5;
+}
+
+.card-footer {
+  anchor-name: --card-footer;
+}
+
+.meta {
+  padding-block-end: var(--card-block-end-padding);
+  padding-inline: 2rem;
+  margin-block-start: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.avatar {
+  inline-size: var(--avatar-size);
+  border-radius: 50%;
+}
+
+.data {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  gap: .1rem;
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+
+.date {
+  opacity: 50%;
+  letter-spacing: .4px;
+}
+
+.share-container {
+  margin-inline-start: auto;
+}
+
+.share-icon-btn {
+  margin-inline-start: auto;
+
+  background-color: var(--light-grayish-blue);
+  
+  border: none;
+  border-radius: 50%;
+  padding: .5rem;
+
+  transition: all 300ms ease-in-out;
+}
+
+.share-icon {
+  inline-size: 1rem;
+  fill: var(--desaturated-dark-blue);
+  transition: all 300ms ease-in-out;
+}
+
+.share-icon-btn:hover {
+  background-color: var(--desaturated-dark-blue);
+}
+
+.share-icon-btn:hover .share-icon,
+.share-icon:hover {
+  fill: var(--light-grayish-blue);
+}
+
+.share-box .share-icon-btn {
+  margin-inline-end: 2rem;
+}
+
+.share-box:popover-open {
+  display: flex;
+
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.share-box {
+  position: absolute;
+  position-anchor: --card-footer;
+  position-area: center;
+  /* redundant but... */
+  /* top: anchor(top);
+  bottom: anchor(bottom); */
+  inline-size: 100%;
+  block-size: calc(var(--avatar-size) + calc(var(--card-block-end-padding) * 2));
+  padding-inline-start: 2rem;
+  border-radius: 0 0 10px 10px;
+  border: none;
+  
+  background-color: var(--very-dark-grayish-blue);
+  color: var(--grayish-blue);
+  letter-spacing: 4px;
+  font-size: .75rem;
+  font-weight: 500;
+  
+  align-items: center;
+  gap: 1rem;
+  
+  transform: scaleX(0);
+  opacity: 0;
+
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out,
+    overlay 0.5s ease-out allow-discrete,
+    display 0.5s ease-out allow-discrete;
+}
+
+.share-box a img {
+  display: block;
+}
+
+@container main (min-inline-size: 41rem) {
+  .preview-card {
+    inline-size: min(88%, 45.5rem);
+    grid-template-rows: 1fr;
+    grid-template-columns: 1.9fr 3fr;
+  }
+
+  .text {
+    border-radius: 0 10px 10px 0;
+  }
+
+  .text h2 {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    opacity: .9;
+  }
+
+  .img-wrapper {
+    background-position: 0 25%;
+    background-size: cover;
+    border-radius: 10px 0 0 10px;
+  }
+
+  /* no need, the other anchor seems to override it: */
+  /* .card-footer {
+    anchor-name: none;
+  } */
+
+  .share-container {
+    display: flex;
+  }
+
+  .share-icon-btn {
+    anchor-name: --share-btn;
+  }
+
+  .share-box:popover-open {
+    display: flex;
+
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .share-box {
+    position: absolute;
+    /* position-anchor: --share-btn; */
+    /* position-area: end center; */
+
+    position-anchor: --card;
+    top: anchor(bottom);
+
+    inline-size: max-content;
+    block-size: unset;
+    border-radius: 10px;
+    padding: 1.1rem 2.3rem;
+    margin-block-start: 5.5rem;
+
+    box-shadow: 55px 16px 50px -15px rgba(0, 0, 0, 0.4);
+
+    /* so arrow pointer is visible: */
+    overflow: visible;
+
+    opacity: 0;
+    transform: scaleX(0);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out,
+      overlay 0.5s ease-out allow-discrete,
+      display 0.5s ease-out allow-discrete;
+  }
+
+  .arrow-down {
+    position: absolute;
+    inset-inline-start: calc(50% - .5rem);
+    inset-block-start: calc(100% - 1px);
+
+    border-block-start: 0.7rem solid var(--very-dark-grayish-blue);
+    border-inline-start: 0.7rem solid transparent;
+    border-inline-end: 0.7rem solid transparent;
+  }
+
+}
